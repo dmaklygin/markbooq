@@ -13,12 +13,12 @@ window.addEventListener('load', function () {
     }
 
     function saveToStorage(val) {
-        storage.area.set(val, function () {
+        BrowserAPI.storage.set(val, function () {
             showMessage(chrome.runtime.lastError ? showMessage('error') : showMessage('success'));
         });
     }
 
-    storage.area.get(storage.default_options, function (items) {
+    BrowserAPI.storage.get(function (items) {
         var inputs = document.querySelectorAll('input'),
             selects = document.querySelectorAll('select'),
             textareas = document.querySelectorAll('textarea');

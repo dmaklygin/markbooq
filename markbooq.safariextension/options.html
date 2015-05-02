@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <title>{{extName}}</title>
+  <link rel="stylesheet" type="text/css" href="css/options.css">
+  <link rel="stylesheet" type="text/css" href="lib/jsTabs/tabs.css">
+</head>
+<body>
+
+<div id=message_place>
+  <span id="error">{{o_error}}</span>
+  <span id="success">{{o_saved}}</span>
+</div>
+
+<div id="page">
+  <header>
+    <img src="img/ext_icons/48.png" title="{{extDescr}}" width="48" height="48">
+    <strong>{{extName}}</strong>
+  </header>
+
+  <section id="main_tabs" class="tabs">
+    <ul class="tabs_nav">
+      <li><a href="#help">{{o_tabs_help}}</a></li>
+      <li><a href="#main">{{o_tabs_main}}</a></li>
+    </ul>
+
+    <div class="tabs_content">
+
+      <div id="help">
+        Спасибо за установку расширения Markbooq!<br>
+        Надеемся, что теперь, Вам будет еще удобнее пользоваться нашим сервисом!<br>
+        <br>
+        1) Теперь Вы можете в два клика добавлять любой сайт в свои закладки на <a href="http://markbooq.ru">markbooq.ru</a> !<br>
+        А именно:<br>
+        - откройте страницу, которую Вы хотите добавить в закладки;<br>
+        - нажмите на значок приложения Markbooq в правом верхнем углу;<br>
+        - Нажмите "Добавить закладку", выберите раздел и нажмите "Ок".<br>
+        <br>
+        Все готово! Быстро и удобно!<br>
+        <br>
+        2) Также, Вы можете открыть любую Вашу закладку не заходя на сайт Markbooq.ru<br>
+        - Нажмите на значок приложения Markbooq в правом верхнем углу;<br>
+        - Нажмите "Открыть мои закладки". Откроется список Ваших разделов;<br>
+        - Зайдите в соответствующий раздел и кликните по нужной закладке.<br>
+        - Вот видите! Теперь Ваш Markbooq всегда у Вас под рукой!<br>
+        <br>
+        ...Или Вы еще не знакомы с Markbooq?<br>
+        Заходите на Markbooq.ru, регистрируйтесь, храните все свои закладки в одном месте и имейте к нему доступ с любых Ваших устройств!<br>
+        <br>
+        С уважением, Ваш Markbooq.ru.<br>
+      </div>
+
+      <div id="main">
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p class="copyright">2014-2015 by <a href="http://markbooq.ru" target="_blank">Markbooq</a></p>
+  </footer>
+</div>
+
+<script src="js/helpers/localizer.js"></script>
+<script src="lib/jsTabs/tabs.js"></script>
+
+<script src="js/api.js"></script>
+<script src="js/helpers/quick_options.js"></script>
+<!--<script src="lib/jquery.min.js"></script>-->
+<script src="js/options.js"></script>
+
+</body>
+</html>

@@ -1,39 +1,84 @@
 $(document).ready(function() {
 
-  $.getJSON("http://markbooq.ru/apibrowser/gate.php", {action: "IsAuthorized"},
-    function(data) {
-      if (data.responseAuth == "no") {
-        $(".loadajax").hide();
-        $(".noauth").show();
+  var setDefaults = function(options, callback) {
+    var
+      defaultOptions = BrowserAPI.default_options,
+      option,
+      newOptions = {};
+
+    options || (options = {});
+
+    for (option in defaultOptions) {
+      if (!options.hasOwnProperty(option)) {
+        newOptions[option] = defaultOptions[option];
       }
-      if (data.responseAuth == "yes") {
-        $(".loadajax").hide();
-        $(".yesauth").show();
+    }
+    if (Object.keys(newOptions).length !== 0) {
+      // save to area if new default options is appeared
+      BrowserAPI.storage.set(newOptions, function () {
+        if (typeof callback === 'function') {
+          callback();
+        }
+      });
+    } else {
+      if (typeof callback === 'function') {
+        callback();
+      }
+    }
+  };
 
-        $.getJSON("http://markbooq.ru/apibrowser/gate.php",
-          { action: "listSection" }, function(data) {
+  BrowserAPI.storage.get(function(data) {
+    // If no data, set defaults
+    if (!data) {
+      // istall defaults
+      setDefaults(data, function() {
+        // show options page
+        BrowserAPI.openTab({ 'url': safari.extension.baseURI + 'options.html' });
+      });
+    }
+  });
 
-            var data2 = data.list;
-            for (var i in data2) {
-              if (data2[i].COLOR == "") {
-                data2[i].COLOR = "#66ab6c";
+  var popover = safari.extension.popovers[0];
+
+  var showMainPage = function() {
+    $.getJSON("http://markbooq.ru/apibrowser/gate.php", { action: "IsAuthorized" },
+      function(data) {
+
+        if (data.responseAuth == "no") {
+          $(".loadajax").hide();
+          $(".noauth").show();
+        }
+        if (data.responseAuth == "yes") {
+          $(".loadajax").hide();
+          $(".yesauth").show();
+
+          $.getJSON("http://markbooq.ru/apibrowser/gate.php",
+            { action: "listSection" }, function(data) {
+
+              var data2 = data.list;
+              for (var i in data2) {
+                if (data2[i].COLOR == "") {
+                  data2[i].COLOR = "#66ab6c";
+                }
+                $(".list-section ul").append(
+                  $('<li>')
+                    .attr("class", "secblock")
+                    .attr("data-sid", data2[i].ID)
+                    .attr("data-ussec", data2[i].USER)
+                    .css("backgroundImage", "url('http://markbooq.ru" + data2[i].ICONPATH + "')")
+                    .css("backgroundColor", data2[i].COLOR).text(data2[i].NAME)
+                );
               }
-              $(".list-section ul").append(
-                $('<li>')
-                  .attr("class", "secblock")
-                  .attr("data-sid", data2[i].ID)
-                  .attr("data-ussec", data2[i].USER)
-                  .css("backgroundImage", "url('http://markbooq.ru" + data2[i].ICONPATH + "')")
-                  .css("backgroundColor", data2[i].COLOR).text(data2[i].NAME)
-              );
-            }
-          });
+            });
+        }
+      });
+  };
 
-      }
-    });
+  // Show First Page
+  showMainPage();
 
   $(".noauth b").click(function() {
-    chrome.tabs.create({url: "http://markbooq.ru/", active: true});
+    BrowserAPI.openTab({ url: "http://markbooq.ru/", active: true });
   });
 
   $(document).on("click", ".secblock", function() {
@@ -55,14 +100,22 @@ $(document).ready(function() {
         $(".sectionr-value").append('<ul>');
 
         for (var i in data2) {
-          if (data2[i].COLOR == "") data2[i].COLOR = "66ab6c";
-          if (data2[i].COLOR == null) data2[i].COLOR = "66ab6c";
-          $(".sectionr-value ul").append($('<li>').attr("class",
-            "booksblock").attr("data-id", data2[i].ID).attr("data-url",
-            data2[i].URL).css("backgroundColor",
-            "#" + data2[i].COLOR).text(data2[i].NAME));
-        }
+          if (data2[i].COLOR == "") {
+            data2[i].COLOR = "66ab6c";
+          }
+          if (data2[i].COLOR == null) {
+            data2[i].COLOR = "66ab6c";
+          }
 
+          $(".sectionr-value ul").append(
+            $('<li>')
+              .attr("class", "booksblock")
+              .attr("data-id", data2[i].ID)
+              .attr("data-url", data2[i].URL)
+              .css("backgroundColor", "#" + data2[i].COLOR)
+              .text(data2[i].NAME)
+          );
+        }
       } else {
         $('.sectionr-value').html("<br>Нету ссылок<br><br>");
       }
@@ -71,16 +124,19 @@ $(document).ready(function() {
   });
 
   $(document).on("click", ".booksblock", function() {
-    chrome.tabs.create({url: $(this).attr("data-url")});
+    BrowserAPI.openTab({ url: $(this).attr("data-url") });
   });
 
   $(document).on("click", ".addbookmarks", function() {
     $(".loadajax").show();
     $(".yesauth").hide();
     $(".sectionr").hide();
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
 
-      var current = tabs[0];
+    var current = BrowserAPI.getActiveTab();
+
+    //chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+
+      //var current = tabs[0];
 
       $.getJSON("http://markbooq.ru/apibrowser/gate.php",
         {action: "listSection"}, function(data3) {
@@ -97,16 +153,22 @@ $(document).ready(function() {
 
           for (var i in data) { //.css("backgroundColor", data[i].COLOR)
 
-            $("#sectbook").append($('<option>').attr("value",
-              data[i].ID).attr("data-ussec", data[i].USER).text(data[i].NAME));
+            $("#sectbook").append(
+                $('<option>')
+                  .attr("value", data[i].ID)
+                  .attr("data-ussec", data[i].USER)
+                  .text(data[i].NAME)
+            );
+
             if (data3.idLastSect !== null && data3.idLastSect == data[i].ID &&
               data3.idUserSect !== null && data3.idUserSect ==
-              data[i].USER) $("#sectbook option:last-child").attr("selected",
-              "selected");
+              data[i].USER) {
+              $("#sectbook option:last-child").attr("selected", "selected");
+            }
           }
 
         });
-    });
+    //});
   });
 
   $(document).on("click", ".sectionr-back", function() {
@@ -114,21 +176,23 @@ $(document).ready(function() {
     $(".sectionr-value").empty();
     $(".sectionr").hide();
   });
+
   $(document).on("click", ".cancelbt", function() {
     $(".yesauth").show();
     $(".addbookmarksb").hide();
   });
 
   $(document).on("click", ".list-section-title span", function() {
-    if ($(".list-section").css("display") ==
-      "none") $(this).text("Закрыть мои закладки"); else $(this).text("Открыть мои закладки");
+    if ($(".list-section").css("display") == "none")  {
+      $(this).text("Закрыть мои закладки");
+    } else {
+      $(this).text("Открыть мои закладки");
+    }
     $(".list-section").toggle("slow");
-
   });
 
   $(document).on("click", ".logoi", function() {
-
-    chrome.tabs.create({url: "http://markbooq.ru/", active: true});
+    BrowserAPI.openTab({ url: "http://markbooq.ru/", active: true });
   });
 
   $(document).on("click", ".savelbt", function() {
@@ -147,7 +211,10 @@ $(document).ready(function() {
       if (data.add == "yes") {
         $(".resultadd").show();
         $(".resultadd").html("<br><br>Закладка добавлена<br><br>");
-        setTimeout(function() { window.close(); }, 2000);
+        setTimeout(function() {
+          popover.hide();
+          showMainPage();
+        }, 2000);
 
       } else {
         $(".resultadd").show();
