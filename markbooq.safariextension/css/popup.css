@@ -1,196 +1,203 @@
 body {
-    width: 240px;
-    overflow-x: hidden;
-    font-family: 'Ubuntu', Arial, sans-serif;
-    font-size: 13px;
-    color: #4a4a4a;
-	padding: 0;
-	margin: 8px 17px 19px;
+  width: 240px;
+  overflow-x: hidden;
+  font-family: 'Ubuntu', Arial, sans-serif;
+  font-size: 13px;
+  color: #4a4a4a;
+  padding: 0;
+  margin: 8px 17px 19px;
 }
 
 header {
-    font-size: 14px;
-    padding: 0 0px 6px 0px;
-    border-bottom: 1px solid #dddddd;
-    font-weight: bold;
+  font-size: 14px;
+  padding: 0 0px 6px 0px;
+  border-bottom: 1px solid #dddddd;
+  font-weight: bold;
 }
-.logoi{
-cursor: pointer;
+
+.logoi {
+  cursor: pointer;
 }
-.logoi i{
-font-style: normal;
-color: #66ab6c;
+
+.logoi i {
+  font-style: normal;
+  color: #66ab6c;
 
 }
 
-.loadajax{
-	margin: 45px 0;
-	text-align: center;
-}
-.noauth{
-display: none;
-background-image: url('/img/signin.png');
-background-repeat: no-repeat;
-background-position: 3px 10px;
-font-size: 14px;
-padding: 10px 6px 2px 27px;
-cursor: pointer;
+.loadajax {
+  margin: 45px 0;
+  text-align: center;
 }
 
-.yesauth{
-display: none;
+.noauth {
+  display: none;
+  background-image: url('../img/signin.png');
+  background-repeat: no-repeat;
+  background-position: 3px 10px;
+  font-size: 14px;
+  padding: 10px 6px 2px 27px;
+  cursor: pointer;
 }
 
-.addbookmarksb{
-display: none;
-
-}
-.addbookmarks{
-background-image: url('/img/Plus1.png');
-background-repeat: no-repeat;
-background-position: 3px 6px;
-font-size: 14px;
-padding: 10px 6px 10px 40px;
-border-bottom: 1px solid #dddddd;
-cursor: pointer;
-}
-.sectionr{
-display: none;
-}
-.sectionr-back{
-background-image: url('/img/back.png');
-background-repeat: no-repeat;
-font-size: 14px;
-float: left;
-border: 0;
-cursor: pointer;
-width: 23px;
-height: 23px;
-margin: 8px 0 4px 4px;
-}
-.sectionr-title{
-font-size: 14px;
-padding: 10px 6px 10px 35px;
-border-bottom: 1px solid #dddddd;
-min-height: 16px;
+.yesauth {
+  display: none;
 }
 
-.list-section-title{
-text-align: center;
+.addbookmarksb {
+  display: none;
+}
+
+.addbookmarks {
+  background-image: url('../img/Plus1.png');
+  background-repeat: no-repeat;
+  background-position: 3px 6px;
+  font-size: 14px;
+  padding: 10px 6px 10px 40px;
+  border-bottom: 1px solid #dddddd;
+  cursor: pointer;
+}
+
+.sectionr {
+  display: none;
+}
+
+.sectionr-back {
+  background-image: url('../img/back.png');
+  background-repeat: no-repeat;
+  font-size: 14px;
+  float: left;
+  border: 0;
+  cursor: pointer;
+  width: 23px;
+  height: 23px;
+  margin: 8px 0 4px 4px;
+}
+
+.sectionr-title {
+  font-size: 14px;
+  padding: 10px 6px 10px 35px;
+  border-bottom: 1px solid #dddddd;
+  min-height: 16px;
+}
+
+.list-section-title {
+  text-align: center;
+}
+
+.list-section-title span {
+  border-bottom: 1px dashed #68a86b;
+  color: #68a86b;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.list-section-title span:hover {
+  border-bottom: 1px dashed #4a4a4a;
+  color: #4a4a4a;
+}
+
+.list-section {
+  display: none;
+}
+
+.list-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.list-section ul li {
+  padding: 10px 12px 10px 47px;
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: 16px 50%;
+  background-size: 20px auto;
+  cursor: pointer;
+  min-height: 22px;
+}
+
+.sectionr-value {
 
 }
 
-.list-section-title span{
-border-bottom: 1px dashed #68a86b;
-color: #68a86b;
-font-size: 14px;
-cursor: pointer;
+.sectionr-value ul {
+  list-style: none;
+  padding: 0;
 }
 
-.list-section-title span:hover{
-border-bottom: 1px dashed #4a4a4a;
-color: #4a4a4a;
-}
-
-.list-section{
-display: none;
-}
-
-.list-section ul{
-list-style: none;
-padding: 0;
-}
-
-.list-section ul li{
-padding: 10px 12px 10px 47px;
-margin: 0 0 4px 0;
-font-size: 18px;
-color: #ffffff;
-background-repeat: no-repeat;
-background-position: 16px 50%;
-background-size: 20px auto;
-cursor: pointer;
-min-height: 22px;
-}
-
-.sectionr-value{
-
-}
-
-.sectionr-value ul{
-list-style: none;
-padding: 0;
-}
-
-.sectionr-value ul li{
-padding: 3px 5px;
-margin: 0 0 4px 0;
-font-size: 14px;
-color: #ffffff;
-background-repeat: no-repeat;
-background-position: 96% 50%;
-background-size: 20px 20px;
-cursor: pointer;
+.sectionr-value ul li {
+  padding: 3px 5px;
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: 96% 50%;
+  background-size: 20px 20px;
+  cursor: pointer;
 }
 
 #window_actions {
-    float: right;
+  float: right;
 }
 
 #window_actions a {
-    margin: 0 0 0 6px;
-    text-decoration: none;
-    color: #a9a9a9;
+  margin: 0 0 0 6px;
+  text-decoration: none;
+  color: #a9a9a9;
 }
 
 #window_actions a:hover {
-	color: #000000;
+  color: #000000;
 }
 
-.addbookmarksbt{
-margin: 10px 0 10px 0;
+.addbookmarksbt {
+  margin: 10px 0 10px 0;
 }
 
-.addbookmarksbt tr td:first-child{
-width: 60px;
-padding: 8px 0;
+.addbookmarksbt tr td:first-child {
+  width: 60px;
+  padding: 8px 0;
 }
 
-#namebook{
-border: 1px solid #68a86b;
-width: 180px;
-padding: 3px 5px;
+#namebook {
+  border: 1px solid #68a86b;
+  width: 180px;
+  padding: 3px 5px;
 }
 
-#sectbook{
-border: 1px solid #68a86b;
-width: 192px;
-padding: 2px 5px;
-background-color: #68a86b;
-color: #ffffff; 
-}
-#sectbook option{
-color: #000000;
-background-color: #ffffff;
+#sectbook {
+  border: 1px solid #68a86b;
+  width: 192px;
+  padding: 2px 5px;
+  background-color: #68a86b;
+  color: #ffffff;
 }
 
-.cancelbt{
-border: 1px solid #d1d1d1;
-padding: 6px 7px;
-width: 100px;
-text-align: center;
-float: left;
-cursor: pointer;
+#sectbook option {
+  color: #000000;
+  background-color: #ffffff;
 }
 
-.savelbt{
-border: 1px solid #68a86b;
-padding: 6px 7px;
-width: 100px;
-text-align: center;
-float: right;
-cursor: pointer;
+.cancelbt {
+  border: 1px solid #d1d1d1;
+  padding: 6px 7px;
+  width: 100px;
+  text-align: center;
+  float: left;
+  cursor: pointer;
 }
-.cc{
-clear:both;
+
+.savelbt {
+  border: 1px solid #68a86b;
+  padding: 6px 7px;
+  width: 100px;
+  text-align: center;
+  float: right;
+  cursor: pointer;
+}
+
+.cc {
+  clear: both;
 }

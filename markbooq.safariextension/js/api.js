@@ -12,14 +12,21 @@ var BrowserAPI = {
 
   storage: {
     get: function(cb) {
-      var options = localStorage.getItem('markbooq');
-      if (options) {
-        options = JSON.parse(options)
+      try {
+        var options = localStorage.getItem('markbooq');
+      } catch (e) {
+        alert('error!');
+      }
+      //var options = localStorage.markbooq;//localStorage.getItem('markbooq');
+      try {
+        options && (options = eval('(' + options + ')'));
+      } catch (e) {
+        alert('JSON error');
       }
       cb && cb(options);
     },
     set: function(options, cb) {
-      localStorage.setItem('markbooq', JSON.stringify(options));
+      localStorage.markbooq = JSON.stringify(options);
       cb && cb();
     }
   },

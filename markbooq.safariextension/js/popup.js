@@ -13,18 +13,12 @@ $(document).ready(function() {
         newOptions[option] = defaultOptions[option];
       }
     }
-    if (Object.keys(newOptions).length !== 0) {
-      // save to area if new default options is appeared
-      BrowserAPI.storage.set(newOptions, function () {
-        if (typeof callback === 'function') {
-          callback();
-        }
-      });
-    } else {
+
+    BrowserAPI.storage.set(newOptions, function () {
       if (typeof callback === 'function') {
         callback();
       }
-    }
+    });
   };
 
   BrowserAPI.storage.get(function(data) {
