@@ -43,7 +43,7 @@ $(document).ready(function() {
   var showMainPage = function() {
     $.getJSON("http://markbooq.ru/apibrowser/gate.php", { action: "IsAuthorized" },
       function(data) {
-
+        $(".resultadd").hide();
         if (data.responseAuth == "no") {
           $(".loadajax").hide();
           $(".noauth").show();
@@ -125,6 +125,14 @@ $(document).ready(function() {
 
   $(document).on("click", ".booksblock", function() {
     BrowserAPI.openTab({ url: $(this).attr("data-url") });
+  });
+
+  $(document).on("click", "#main", function() {
+    BrowserAPI.openTab({ url: safari.extension.baseURI + 'options.html#main' });
+  });
+
+  $(document).on("click", "#help", function() {
+    BrowserAPI.openTab({ url: safari.extension.baseURI + 'options.html#help' });
   });
 
   $(document).on("click", ".addbookmarks", function() {
