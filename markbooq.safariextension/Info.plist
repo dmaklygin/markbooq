@@ -16,13 +16,34 @@
 	<string>1</string>
 	<key>Chrome</key>
 	<dict>
-		<key>Context Menu Items</key>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>popup.html</string>
+				<key>Height</key>
+				<real>300</real>
+				<key>Identifier</key>
+				<string>POPUP</string>
+				<key>Width</key>
+				<real>300</real>
+			</dict>
+		</array>
+		<key>Toolbar Items</key>
 		<array>
 			<dict>
 				<key>Identifier</key>
-				<string>markbooq</string>
-				<key>Title</key>
-				<string>йцу</string>
+				<string>popup_marbooq_button</string>
+				<key>Image</key>
+				<string>img/ext_icons/19.png</string>
+				<key>Label</key>
+				<string>Marbooq</string>
+				<key>Palette Label</key>
+				<string>Marbooq</string>
+				<key>Popover</key>
+				<string>POPUP</string>
+				<key>Tool Tip</key>
+				<string>Marbooq</string>
 			</dict>
 		</array>
 	</dict>
@@ -39,15 +60,13 @@
 	<dict>
 		<key>Website Access</key>
 		<dict>
-			<key>Allowed Domains</key>
-			<array>
-				<string>markbooq.ru</string>
-			</array>
 			<key>Include Secure Pages</key>
 			<true/>
 			<key>Level</key>
-			<string>Some</string>
+			<string>All</string>
 		</dict>
 	</dict>
+	<key>Website</key>
+	<string>http://markbooq.ru/</string>
 </dict>
 </plist>

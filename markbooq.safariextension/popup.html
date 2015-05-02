@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="css/popup.css">
+  <script src="js/helpers/localizer.js"></script>
+  <link
+    href='http://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=latin,cyrillic'
+    rel='stylesheet' type='text/css'>
+  <script src="js/storage.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popup.js"></script>
+</head>
+<body>
+<header>
+  <span class="logoi">Markboo<i>q</i></span>
+	<span id="window_actions">
+        <a href="options.html#help" title="{{p_helpBtn}}" target="_blank">?</a>
+        <a href="options.html#main" title="{{p_optionsBtn}}"
+           target="_blank"><img src="img/setting.png"></a>
+    </span>
+</header>
+<section>
+  <div class="loadajax"><br><br><img src="img/ajax-loader.gif"><br><br>{{loadajax}}
+  </div>
+  <div class="noauth"><b>Необходимо авторизоваться</b></div>
+  <div class="yesauth">
+    <div class="addbookmarks">Добавить закладку</div>
+    <br>
+
+    <div class="list-section-title"><span>Открыть мои закладки</span></div>
+    <div class="list-section">
+      <ul>
+      </ul>
+    </div>
+  </div>
+  <div class="addbookmarksb">
+    <table class="addbookmarksbt">
+      <tr>
+        <td>Имя:</td>
+        <td><input id="namebook" type="text"
+                   placeholder="Название ссылки"><input id="urlbook"
+                                                        type="hidden"></td>
+      </tr>
+      <tr>
+        <td>Раздел:</td>
+        <td><select id="sectbook"></select></td>
+      </tr>
+    </table>
+    <div class="cancelbt">Отменить</div>
+    <div class="savelbt">Готово</div>
+    <div class="cc"></div>
+  </div>
+  <div class="sectionr">
+    <div class="addbookmarks">Добавить закладку</div>
+    <div class="sectionr-back"></div>
+    <div class="sectionr-title"></div>
+    <div class="sectionr-value"></div>
+  </div>
+  <div class="resultadd">
+  </div>
+</section>
+</body>
+</html>
