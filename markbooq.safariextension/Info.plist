@@ -17,7 +17,7 @@
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
-		<string>options.html</string>
+		<string>global.html</string>
 		<key>Popovers</key>
 		<array>
 			<dict>
@@ -28,7 +28,7 @@
 				<key>Identifier</key>
 				<string>POPUP</string>
 				<key>Width</key>
-				<real>300</real>
+				<real>270</real>
 			</dict>
 		</array>
 		<key>Toolbar Items</key>

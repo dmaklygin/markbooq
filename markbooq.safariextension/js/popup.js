@@ -1,4 +1,17 @@
 $(document).ready(function() {
+  var isAuth = false;
+  setInterval(function() {
+    $.getJSON("http://markbooq.ru/apibrowser/gate.php", { action: "IsAuthorized" },
+      function(response) {
+        //alert(response.responseAuth);
+        var isAuthorizated = response.responseAuth === 'yes' ? true : false;
+        if (isAuthorizated != isAuth) {
+          isAuth = isAuthorizated;
+          showMainPage();
+        }
+      });
+  }, 1000);
+
 
   var setDefaults = function(options, callback) {
     var
@@ -35,37 +48,41 @@ $(document).ready(function() {
   var popover = safari.extension.popovers[0];
 
   var showMainPage = function() {
-    $.getJSON("http://markbooq.ru/apibrowser/gate.php", { action: "IsAuthorized" },
-      function(data) {
-        $(".resultadd").hide();
-        if (data.responseAuth == "no") {
-          $(".loadajax").hide();
-          $(".noauth").show();
-        }
-        if (data.responseAuth == "yes") {
-          $(".loadajax").hide();
-          $(".yesauth").show();
+    //$.getJSON("http://markbooq.ru/apibrowser/gate.php", { action: "IsAuthorized" },
+    //  function(data) {
+    $(".resultadd").hide();
 
-          $.getJSON("http://markbooq.ru/apibrowser/gate.php",
-            { action: "listSection" }, function(data) {
+    if (!isAuth) {
+      $(".loadajax").hide();
+      $(".yesauth").hide();
+      $(".noauth").show();
+    }
 
-              var data2 = data.list;
-              for (var i in data2) {
-                if (data2[i].COLOR == "") {
-                  data2[i].COLOR = "#66ab6c";
-                }
-                $(".list-section ul").append(
-                  $('<li>')
-                    .attr("class", "secblock")
-                    .attr("data-sid", data2[i].ID)
-                    .attr("data-ussec", data2[i].USER)
-                    .css("backgroundImage", "url('http://markbooq.ru" + data2[i].ICONPATH + "')")
-                    .css("backgroundColor", data2[i].COLOR).text(data2[i].NAME)
-                );
-              }
-            });
-        }
-      });
+    if (isAuth) {
+      $(".loadajax").hide();
+      $(".noauth").hide();
+      $(".yesauth").show();
+
+      $.getJSON("http://markbooq.ru/apibrowser/gate.php",
+        { action: "listSection" }, function(data) {
+
+          var data2 = data.list;
+          for (var i in data2) {
+            if (data2[i].COLOR == "") {
+              data2[i].COLOR = "#66ab6c";
+            }
+            $(".list-section ul").append(
+              $('<li>')
+                .attr("class", "secblock")
+                .attr("data-sid", data2[i].ID)
+                .attr("data-ussec", data2[i].USER)
+                .css("backgroundImage", "url('http://markbooq.ru" + data2[i].ICONPATH + "')")
+                .css("backgroundColor", data2[i].COLOR).text(data2[i].NAME)
+            );
+          }
+        });
+    }
+      //});
   };
 
   // Show First Page
@@ -91,7 +108,9 @@ $(document).ready(function() {
       var data2 = data.rows;
       if (data2) {
 
-        $(".sectionr-value").append('<ul>');
+        $(".sectionr-value")
+          .empty()
+          .append('<ul>');
 
         for (var i in data2) {
           if (data2[i].COLOR == "") {
