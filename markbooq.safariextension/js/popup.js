@@ -12,7 +12,6 @@ $(document).ready(function() {
 
   safari.application.addEventListener("message", onAuth, false);
 
-
   var setDefaults = function(options, callback) {
     var
       defaultOptions = BrowserAPI.default_options,
@@ -48,14 +47,14 @@ $(document).ready(function() {
   var popover = safari.extension.popovers[0];
 
   var showMainPage = function() {
-    //$.getJSON("http://markbooq.ru/apibrowser/gate.php", { action: "IsAuthorized" },
-    //  function(data) {
     $(".resultadd").hide();
+    $(".sectionr").hide();
 
     if (!isAuth) {
       $(".loadajax").hide();
       $(".yesauth").hide();
       $(".noauth").show();
+
     }
 
     if (isAuth) {
@@ -155,10 +154,6 @@ $(document).ready(function() {
 
     var current = BrowserAPI.getActiveTab();
 
-    //chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-
-      //var current = tabs[0];
-
       $.getJSON("http://markbooq.ru/apibrowser/gate.php",
         {action: "listSection"}, function(data3) {
           $(".loadajax").hide();
@@ -189,7 +184,6 @@ $(document).ready(function() {
           }
 
         });
-    //});
   });
 
   $(document).on("click", ".sectionr-back", function() {
