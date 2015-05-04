@@ -1,10 +1,10 @@
 $(document).ready(function() {
-  var isAuth = false;
+  var isAuth = null;
 
   var onAuth = function(data) {
     var response = data.message || {};
     var isAuthorizated = response.responseAuth === 'yes' ? true : false;
-    if (isAuthorizated != isAuth) {
+    if (isAuthorizated !== isAuth) {
       isAuth = isAuthorizated;
       showMainPage();
     }

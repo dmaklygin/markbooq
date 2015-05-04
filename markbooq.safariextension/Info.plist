@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Builder Version</key>
-	<string>10600.2.5</string>
+	<string>10600.4.10.7</string>
 	<key>CFBundleDisplayName</key>
 	<string>Markbooq</string>
 	<key>CFBundleIdentifier</key>
@@ -37,7 +37,7 @@
 				<key>Identifier</key>
 				<string>popup_marbooq_button</string>
 				<key>Image</key>
-				<string>img/ext_icons/icon_18.png</string>
+				<string>img/ext_icons/18.png</string>
 				<key>Label</key>
 				<string>Marbooq</string>
 				<key>Palette Label</key>
@@ -60,7 +60,7 @@
 		</dict>
 	</dict>
 	<key>DeveloperIdentifier</key>
-	<string></string>
+	<string>ZSJ5379UYG</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
