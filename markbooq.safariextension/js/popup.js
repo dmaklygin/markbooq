@@ -81,11 +81,10 @@ $(document).ready(function() {
           }
         });
     }
-      //});
   };
 
-  // Show First Page
-  showMainPage();
+  // First initialization
+  $.getJSON("http://markbooq.ru/apibrowser/gate.php", { action: "IsAuthorized" }, function(data) { onAuth({ message: data }); });
 
   $(".noauth b").click(function() {
     BrowserAPI.openTab({ url: "http://markbooq.ru/", active: true });

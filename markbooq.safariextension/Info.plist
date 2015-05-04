@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Builder Version</key>
-	<string>10600.4.10.7</string>
+	<string>10600.2.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>Markbooq</string>
 	<key>CFBundleIdentifier</key>
@@ -60,7 +60,7 @@
 		</dict>
 	</dict>
 	<key>DeveloperIdentifier</key>
-	<string>ZSJ5379UYG</string>
+	<string></string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
