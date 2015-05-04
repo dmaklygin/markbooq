@@ -1,16 +1,16 @@
 $(document).ready(function() {
   var isAuth = false;
-  setInterval(function() {
-    $.getJSON("http://markbooq.ru/apibrowser/gate.php", { action: "IsAuthorized" },
-      function(response) {
-        //alert(response.responseAuth);
-        var isAuthorizated = response.responseAuth === 'yes' ? true : false;
-        if (isAuthorizated != isAuth) {
-          isAuth = isAuthorizated;
-          showMainPage();
-        }
-      });
-  }, 1000);
+
+  var onAuth = function(data) {
+    var response = data.message || {};
+    var isAuthorizated = response.responseAuth === 'yes' ? true : false;
+    if (isAuthorizated != isAuth) {
+      isAuth = isAuthorizated;
+      showMainPage();
+    }
+  };
+
+  safari.application.addEventListener("message", onAuth, false);
 
 
   var setDefaults = function(options, callback) {
